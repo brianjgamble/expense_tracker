@@ -24,6 +24,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   coderay (~> 1.1, >= 1.1.3)
