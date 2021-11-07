@@ -4,10 +4,16 @@ module ExpenseTracker
   class API < Roda
     plugin :json
 
+    def self.ledger=(ledger)
+      @@ledger = ledger
+    end
+
     route do |r|
       r.on 'expenses' do
         r.post do
-          {expense_id: 42}
+          expense = JSON.parse(request.body.read)
+          result = @@ledger.record(expense)
+          {expense_id: result.expense_id}
         end
 
         r.get String do |date|
