@@ -8,7 +8,7 @@ module ExpenseTracker
     let(:ledger) { instance_double('ExpenseTracker::Ledger') }
 
     def app
-      API.ledger = ledger
+      API.opts[:ledger] = ledger
       API.app
     end
 

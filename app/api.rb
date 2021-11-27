@@ -5,15 +5,15 @@ module ExpenseTracker
   class API < Roda
     plugin :json
 
-    def self.ledger=(ledger)
-      @@ledger = ledger
+    def ledger
+      opts[:ledger]
     end
 
     route do |r|
       r.on 'expenses' do
         r.post do
           expense = JSON.parse(request.body.read)
-          result = @@ledger.record(expense)
+          result = ledger.record(expense)
 
           if result.success?
             {expense_id: result.expense_id}
